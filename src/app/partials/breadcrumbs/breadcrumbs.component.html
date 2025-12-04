@@ -1,0 +1,12 @@
+<nav class="breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <li
+      *ngFor="let item of items; let last = last"
+      class="breadcrumbs__item"
+      [class.breadcrumbs__item--last]="last"
+    >
+      <span>{{ item }}</span>
+      <span *ngIf="!last" class="breadcrumbs__separator">/</span>
+    </li>
+  </ol>
+</nav>

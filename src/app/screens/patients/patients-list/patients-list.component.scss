@@ -1,0 +1,166 @@
+/* =========================================================
+   LISTA DE PACIENTES – ESTILO POS | PALETA CLINITURN
+   Tabla limpia, moderna y consistente con el Dashboard
+   ========================================================= */
+
+// Wrapper General
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 146, 184, 0.05) 100%);
+  color: #231F20;
+  display: block;
+  padding-bottom: 40px;
+}
+
+// Título de la Página
+h2 {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 900;
+  color: #0092B8; // Azul CliniTurn
+  font-size: 28px;
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+
+  // Icono decorativo antes del título
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background: linear-gradient(180deg, #0092B8, #017895);
+    margin-right: 12px;
+    border-radius: 4px;
+  }
+}
+
+// Contenedor de la Tabla (Efecto Tarjeta POS)
+.col-12 {
+  // Aplicamos el estilo de tarjeta al contenedor de la tabla
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 16px 44px rgba(0, 146, 184, 0.08);
+  border: 1px solid rgba(0, 146, 184, 0.15);
+  padding: 1.5rem; // Espacio interno
+  margin-top: 1rem;
+  overflow: hidden; // Para recortar las esquinas
+}
+
+// Tabla
+.table {
+  margin-bottom: 0;
+  vertical-align: middle;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  // Cabecera
+  thead {
+    th {
+      background-color: #F8FAFC; // Fondo muy suave
+      color: #0092B8; // Texto Azul CliniTurn
+      font-family: 'Nexa-Bold', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgba(0, 146, 184, 0.1);
+      padding: 16px;
+      white-space: nowrap;
+    }
+  }
+
+  // Cuerpo
+  tbody {
+    tr {
+      transition: background-color 0.2s ease;
+
+      td {
+        padding: 16px;
+        font-family: 'Nexa-Bold', sans-serif;
+        font-size: 14px;
+        color: #231F20;
+        border-bottom: 1px solid #f1f5f9;
+        font-weight: 600;
+      }
+
+      // Efecto Hover en filas
+      &:hover {
+        background-color: #f0f9ff !important; // Azul muy muy claro al pasar el mouse
+
+        td {
+          color: #0092B8; // El texto se ilumina ligeramente
+        }
+      }
+    }
+  }
+}
+
+// Botones de Acción en la Tabla (Pequeños)
+.btn-sm {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 16px;
+  }
+}
+
+// Botón Activar/Desactivar (Outline Danger)
+.btn-outline-danger {
+  border: 1.5px solid #fee2e2; // Rojo muy claro por defecto
+  color: #ef4444;
+  background: transparent;
+
+  &:hover {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+  }
+}
+
+// Loading State
+.text-center {
+  font-family: 'Nexa-Bold', sans-serif;
+  color: #64748b;
+  font-size: 16px;
+  padding: 2rem;
+}
+
+// Alerta de "No hay pacientes"
+.alert-info {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  border-radius: 12px;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 700;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .col-12 {
+    padding: 1rem; // Menos padding en móvil
+  }
+
+  .table {
+    // Scroll horizontal en móviles para tablas anchas
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}

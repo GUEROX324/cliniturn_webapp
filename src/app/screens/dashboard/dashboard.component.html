@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="header-dashboard">
+    <app-navbar [tipo]="'dashboard'" [rol]="rol"></app-navbar>
+  </div>
+
+  <div class="body-dashboard container mt-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2>Bienvenido {{ nombreUsuario }}</h2>
+        <p *ngIf="rol === 'administrador'">Rol: Administrador</p>
+        <p *ngIf="rol === 'medico'">Rol: Médico</p>
+        <p *ngIf="rol === 'paciente'">Rol: Paciente</p>
+      </div>
+    </div>
+
+    <section *ngIf="rol === 'administrador'">
+      <h4>Panel de administrador</h4>
+      <ul>
+        <li><a routerLink="/doctors/list">Gestión de médicos</a></li>
+        <li><a routerLink="/patients/list">Gestión de pacientes</a></li>
+        <li><a routerLink="/specialties/list">Gestión de especialidades</a></li>
+        <li><a routerLink="/appointments/list">Ver todas las citas</a></li>
+        <li><a routerLink="/records/list">Expedientes clínicos</a></li>
+        <li><a routerLink="/consultorios/list">Gestión de consultorios</a></li>
+        <li><a routerLink="/graficas">Graficas</a></li>
+      </ul>
+    </section>
+
+    <section *ngIf="rol === 'medico'">
+      <h4>Panel de médico</h4>
+      <ul>
+        <li><a routerLink="/appointments/list">Mis citas</a></li>
+        <li><a routerLink="/records/list">Expedientes de mis pacientes</a></li>
+      </ul>
+    </section>
+
+    <section *ngIf="rol === 'paciente'">
+      <h4>Panel de paciente</h4>
+      <ul>
+        <li><a routerLink="/appointments/list">Mis citas</a></li>
+        <li><a routerLink="/appointments/form">Agendar nueva cita</a></li>
+      </ul>
+    </section>
+  </div>
+</div>

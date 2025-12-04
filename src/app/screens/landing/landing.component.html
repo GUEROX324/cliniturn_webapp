@@ -1,0 +1,60 @@
+<div class="wrapper-landing">
+  <header class="landing-header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand brand-title" routerLink="/">CliniTurn</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLanding"
+          aria-controls="navbarLanding" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarLanding">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+            </li>
+          </ul>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" routerLink="/auth/login">
+              Iniciar sesión
+            </button>
+            <button class="btn btn-primary" routerLink="/auth/register">
+              Registrarme
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="landing-main">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Agenda tus citas médicas en minutos</h1>
+        <p>
+          CliniTurn conecta a administradores, médicos y pacientes para gestionar
+          citas, expedientes y reportes en un solo lugar.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" routerLink="/auth/login">
+            Inicia sesión
+          </button>
+          <button class="btn btn-outline-secondary" routerLink="/auth/register">
+            Crea tu cuenta
+          </button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/doctores.png" alt="Ilustración médica">
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <span>CliniTurn &copy; {{ currentYear }}</span>
+  </footer>
+</div>

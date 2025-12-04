@@ -1,0 +1,184 @@
+/* =========================================================
+   MODAL VER EXPEDIENTE – ESTILO POS | PALETA CLINITURN
+   ========================================================= */
+
+// Wrapper del Modal
+.wrapper-modal {
+  padding: 1.5rem; // Espacio interno cómodo
+  font-family: 'Nexa-Bold', sans-serif;
+  color: #231F20;
+  background-color: #ffffff;
+  position: relative;
+  max-height: 90vh; // Evita que se salga de la pantalla
+  overflow-y: auto; // Scroll si es muy largo
+}
+
+// Botón de Cerrar (Icono X en la esquina)
+.icon-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+
+  .btn {
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #fee2e2;
+      color: #ef4444; // Rojo al pasar el mouse
+      transform: rotate(90deg); // Efecto de rotación sutil
+    }
+  }
+}
+
+// Título del Modal
+.title-modal {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 900;
+  color: #0092B8;
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+
+  // Barra decorativa lateral (Identidad CliniTurn)
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 20px;
+    background: linear-gradient(180deg, #0092B8, #017895);
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+}
+
+// Subtítulos (Historial)
+.subtitle-modal {
+  font-size: 18px;
+  color: #334155;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+// Campos de Información (Resumen)
+.field {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e2e8f0; // Separador sutil
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .label {
+    font-weight: 700;
+    color: #0092B8; // Azul para las etiquetas
+    min-width: 140px; // Alineación uniforme
+    margin-right: 10px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .value {
+    color: #231F20; // Gris oscuro para los datos
+    font-weight: 500;
+    font-size: 1rem;
+  }
+}
+
+// Tabla de Historial (Compacta)
+.table {
+  margin-top: 1rem;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  overflow: hidden; // Para recortar bordes
+
+  thead {
+    th {
+      background-color: #F8FAFC;
+      color: #0092B8;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      padding: 10px;
+      border-bottom: 2px solid rgba(0, 146, 184, 0.1);
+    }
+  }
+
+  tbody {
+    td {
+      padding: 10px;
+      font-size: 0.85rem;
+      color: #475569;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    tr:hover {
+      background-color: #f0f9ff; // Hover azul claro
+      td {
+        color: #0092B8;
+      }
+    }
+  }
+}
+
+// Área de Botones Inferior
+.buttons-modal {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+
+  .btn-cerrar {
+    background-color: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    color: #64748b;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
+      color: #334155;
+    }
+  }
+}
+
+// Estado de Carga
+.text-center {
+  padding: 3rem;
+  color: #94a3b8;
+  font-style: italic;
+  font-weight: 500;
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .field {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .label {
+      margin-bottom: 4px;
+    }
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

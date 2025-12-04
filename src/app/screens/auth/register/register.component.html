@@ -1,0 +1,165 @@
+<div class="wrapper">
+  <div class="body-admin">
+
+    <!-- Título simple estilo POS -->
+    <div class="row mt-4 mb-3 justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6 text-center">
+        <span class="title-perfil">Registro de Usuario</span>
+      </div>
+    </div>
+
+    <!-- Contenedor central -->
+    <div class="container d-flex justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+
+        <!-- Tarjeta estilo POS -->
+        <div class="card p-4">
+          <form (ngSubmit)="onSubmitRegister()">
+
+            <!-- MATRÍCULA -->
+            <div class="mb-3">
+              <label for="matricula" class="form-label">Matrícula</label>
+              <input
+                id="matricula"
+                type="text"
+                class="form-control"
+                name="matricula"
+                placeholder="Escribe tu matrícula"
+                [(ngModel)]="user.matricula"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.matricula">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.matricula }}
+              </div>
+            </div>
+
+            <!-- NOMBRE COMPLETO -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre completo</label>
+              <input
+                id="nombre"
+                type="text"
+                class="form-control"
+                name="nombre"
+                placeholder="Nombre y Apellidos"
+                [(ngModel)]="user.nombre"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.nombre">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.nombre }}
+              </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo institucional</label>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="user.email"
+                placeholder="usuario@universidad.mx"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.email">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.email }}
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- TELÉFONO -->
+              <div class="col-6 mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input
+                  id="telefono"
+                  type="text"
+                  class="form-control"
+                  name="telefono"
+                  placeholder="(000) 000-0000"
+                  [(ngModel)]="user.telefono"
+                />
+                <div class="text-danger mt-1" *ngIf="errores.telefono">
+                  <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.telefono }}
+                </div>
+              </div>
+
+              <!-- EDAD -->
+              <div class="col-6 mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input
+                  id="edad"
+                  type="number"
+                  class="form-control"
+                  name="edad"
+                  placeholder="00"
+                  [(ngModel)]="user.edad"
+                />
+                <div class="text-danger mt-1" *ngIf="errores.edad">
+                  <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.edad }}
+                </div>
+              </div>
+            </div>
+
+            <!-- CARRERA -->
+            <div class="mb-3">
+              <label for="carrera" class="form-label">Carrera / Programa</label>
+              <input
+                id="carrera"
+                type="text"
+                class="form-control"
+                name="carrera"
+                placeholder="Ej. Medicina"
+                [(ngModel)]="user.carrera"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.carrera">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.carrera }}
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="••••••••"
+                [(ngModel)]="user.password"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.password">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.password }}
+              </div>
+            </div>
+
+            <!-- CONFIRM PASSWORD -->
+            <div class="mb-3">
+              <label for="confirmar_password" class="form-label">Confirmar contraseña</label>
+              <input
+                id="confirmar_password"
+                type="password"
+                class="form-control"
+                name="confirmar_password"
+                placeholder="••••••••"
+                [(ngModel)]="user.confirmar_password"
+              />
+              <div class="text-danger mt-1" *ngIf="errores.confirmar_password">
+                <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errores.confirmar_password }}
+              </div>
+            </div>
+
+            <!-- BOTÓN -->
+
+            <button class="btn btn-outline-secondary" routerLink="">Inicio</button>
+            <button
+              type="submit"
+              class="btn btn-primary w-100 mt-3"
+              [disabled]="loading"
+            >
+              <span *ngIf="!loading">Crear cuenta</span>
+              <span *ngIf="loading">Guardando...</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

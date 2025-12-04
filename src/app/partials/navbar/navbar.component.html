@@ -1,0 +1,156 @@
+<div class="wrapper">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <!-- Si NO es pantalla de registro de usuarios, muestra menú normal -->
+          <ng-container *ngIf="tipo != 'registro-usuarios'; else registraUsers">
+
+            <!-- Inicio / Dashboard -->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'home' }"
+                id="principal"
+                aria-current="page"
+                (click)="clickNavLink('home')"
+              >
+                Inicio
+              </a>
+            </li>
+
+            <!-- Citas: SIEMPRE visible -->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'appointments' }"
+                id="appointments"
+                (click)="clickNavLink('appointments')"
+              >
+                Citas
+              </a>
+            </li>
+
+            <!-- Pacientes: admin y doctor -->
+            <li class="nav-item" *ngIf="rol !== 'patient'">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'patients' }"
+                id="patients"
+                (click)="clickNavLink('patients')"
+              >
+                Pacientes
+              </a>
+            </li>
+
+            <!-- Solo admin: Médicos -->
+            <li class="nav-item" *ngIf="rol === 'admin'">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'doctors' }"
+                id="doctors"
+                (click)="clickNavLink('doctors')"
+              >
+                Médicos
+              </a>
+            </li>
+
+            <!-- Solo admin: Especialidades -->
+            <li class="nav-item" *ngIf="rol === 'admin'">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'specialties' }"
+                id="specialties"
+                (click)="clickNavLink('specialties')"
+              >
+                Especialidades
+              </a>
+            </li>
+
+            <!-- Solo admin: Expedientes -->
+            <li class="nav-item" *ngIf="rol === 'admin'">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'records' }"
+                id="records"
+                (click)="clickNavLink('records')"
+              >
+                Expedientes
+              </a>
+            </li>
+
+            <!-- Solo admin: Reportes -->
+            <li class="nav-item" *ngIf="rol === 'admin'">
+              <a
+                class="nav-link"
+                [ngClass]="{ 'active': activeLink === 'reports' }"
+                id="reports"
+                (click)="clickNavLink('reports')"
+              >
+                Reportes
+              </a>
+            </li>
+
+          </ng-container>
+
+          <!-- En el else - del template mostrará todo lo correspondiente a la vista de registro -->
+          <ng-template #registraUsers>
+            <label class="navbar-brand" *ngIf="!editar">
+              Registro en CliniTurn
+            </label>
+            <label class="navbar-brand" *ngIf="editar">
+              Editar usuario en CliniTurn
+            </label>
+          </ng-template>
+        </ul>
+
+        <!-- 🔽 Dropdown de perfil alineado a la derecha -->
+        <div class="dropdown ms-auto">
+          <button
+            class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle me-1"></i>
+            <span *ngIf="token != ''">Perfil</span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <!-- Cuando haya token: mostrar Cerrar sesión -->
+            <li *ngIf="token != ''">
+              <button class="dropdown-item" type="button" (click)="logout()">
+                Cerrar sesión
+              </button>
+              <button class="dropdown-item" type="button" (click)="perfil()">
+                Perfil
+              </button>
+            </li>
+
+            <!-- Si no hay sesión y estamos en modo registro-usuarios -->
+            <li *ngIf="tipo == 'registro-usuarios' && token == ''">
+              <button class="dropdown-item" type="button" (click)="goToLogin()">
+                Iniciar sesión
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</div>

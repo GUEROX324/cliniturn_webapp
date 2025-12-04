@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2>Expedientes clínicos</h2>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="row" *ngIf="loading">
+      <div class="col-12 text-center">
+        Cargando expedientes...
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="row" *ngIf="!loading">
+      <div class="col-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Paciente</th>
+              <th>Matrícula</th>
+              <th>Médico</th>
+              <th>Especialidad</th>
+              <th>Última cita</th>
+              <th>Total de citas</th>
+              <th>Ver</th>
+              <th>Descargar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exp of expedientes; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ exp.paciente }}</td>
+              <td>{{ exp.matricula || '—' }}</td>
+              <td>{{ exp.medico }}</td>
+              <td>{{ exp.especialidad }}</td>
+
+              <td>
+                <ng-container *ngIf="exp.ultima_cita; else sinFecha">
+                  {{ exp.ultima_cita | date:'dd/MM/yyyy HH:mm' }}
+                </ng-container>
+                <ng-template #sinFecha>—</ng-template>
+              </td>
+
+              <td>{{ exp.total_citas }}</td>
+
+              <!-- Ver expediente -->
+              <td>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  (click)="verExpediente(exp)"
+                  [disabled]="!puedeVerExpedientes"
+                >
+                  <i class="bi bi-eye-fill"></i>
+                </button>
+              </td>
+
+              <!-- Descargar -->
+              <td>
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  (click)="descargarExpediente(exp)"
+                  [disabled]="!puedeVerExpedientes || descargandoId === exp.id"
+                >
+                  <i class="bi bi-download" *ngIf="descargandoId !== exp.id"></i>
+                  <span *ngIf="descargandoId === exp.id">...</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="expedientes.length === 0 && !loading" class="alert alert-info">
+          No hay expedientes registrados.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,172 @@
+/* =========================================================
+   REGISTRO – ESTRUCTURA POS | PALETA CLINITURN
+   Colores: Azul CliniTurn (#0092B8), Texto (#231F20), Fondos Limpios
+   ========================================================= */
+
+// Wrapper General
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  // Fondo con el degradado sutil de CliniTurn (Blanco a azul muy tenue)
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 146, 184, 0.05) 100%);
+  color: #231F20;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 40px;
+}
+
+.body-admin {
+  width: 100%;
+  max-width: 1200px;
+  padding: 12px 16px;
+}
+
+// Título estilo "Pastilla" (Estructura POS, Color CliniTurn)
+.title-perfil {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 12px;
+  // Gradiente Azul CliniTurn
+  background: linear-gradient(90deg, #0092B8, #017895);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-family: 'Nexa-Bold', sans-serif; // Tipografía CliniTurn
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  // Sombra azulada
+  box-shadow: 0 8px 22px rgba(0, 146, 184, 0.25);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+// Tarjeta del Formulario
+.card {
+  background: #ffffff;
+  // Borde sutil azulado
+  border: 1px solid rgba(0, 146, 184, 0.15);
+  border-radius: 18px;
+  // Sombra elegante
+  box-shadow: 0 16px 44px rgba(0, 146, 184, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+// Etiquetas
+.form-label {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 700;
+  color: #231F20 !important;
+  -webkit-text-fill-color: #231F20 !important;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+// Inputs (Estructura robusta POS, pero colores limpios)
+.form-control {
+  height: 50px; // Altura "POS"
+  border-radius: 14px; // Redondeo "POS"
+
+  // Color de borde y fondo adaptado a CliniTurn (más limpio que el gris oscuro del POS)
+  border: 1.5px solid #dbeafe; // Azul grisáceo muy claro
+  background-color: #F8FAFC;   // Fondo casi blanco, muy limpio
+
+  color: #231F20 !important;
+  -webkit-text-fill-color: #231F20 !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-size: 15px;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: #94a3b8 !important; // Gris neutro para placeholder
+    -webkit-text-fill-color: #94a3b8 !important;
+    opacity: 1;
+    font-weight: normal;
+  }
+
+  // Estado Focus
+  &:focus {
+    outline: none;
+    background-color: #ffffff;
+    // Borde Azul CliniTurn
+    border-color: #0092B8;
+    // Brillo Azul
+    box-shadow: 0 0 0 4px rgba(0, 146, 184, 0.15);
+  }
+}
+
+// Mensajes de error
+.text-danger {
+  color: #dc3545 !important; // Rojo estándar de error
+  -webkit-text-fill-color: #dc3545 !important;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+// Botón de Acción (Submit)
+.btn-primary {
+  height: 52px;
+  border: 0;
+  border-radius: 12px;
+  // Gradiente Azul CliniTurn
+  background: linear-gradient(90deg, #0092B8, #017895);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+
+  // Sombra azul
+  box-shadow: 0 4px 14px rgba(0, 146, 184, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #0081a3, #01657d); // Un poco más oscuro al hover
+    box-shadow: 0 8px 20px rgba(0, 146, 184, 0.4);
+  }
+
+  &:disabled {
+    background: #cbd5e1; // Gris azulado deshabilitado
+    color: #f1f5f9 !important;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+// Ajustes Responsive
+@media (max-width: 576px) {
+  .card {
+    padding: 1.5rem !important;
+    border-radius: 14px;
+    box-shadow: none;
+    border: none;
+    // En móvil se integra al fondo
+    background: transparent;
+  }
+
+  .form-control {
+    // En móvil, fondo blanco para resaltar sobre el fondo grisáceo/azulado
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+  }
+
+  .title-perfil {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+}

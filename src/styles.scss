@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media (max-width: 992px) {
+  // Ajuste de contenedores principales
+  .container {
+    padding: 1.5rem !important; // Reducir padding
+    max-width: 95% !important;  // Usar más ancho de pantalla
+  }
+
+  // Títulos más pequeños
+  h2 {
+    font-size: 24px !important;
+  }
+
+
+  .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto; // Habilita scroll horizontal
+    white-space: nowrap; // Evita que el texto se rompa feo
+    -webkit-overflow-scrolling: touch; // Scroll suave en iOS
+  }
+
+  .btn-sm {
+    width: 32px !important;
+    height: 32px !important;
+
+    i {
+      font-size: 14px !important;
+    }
+  }
+
+  .col-md-4, .col-md-6 {
+    width: 100% !important; 
+  }
+}

@@ -1,0 +1,29 @@
+.toasts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  &__item {
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  &__item--success {
+    background: #ecfdf3;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+
+  &__item--error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+
+  &__item--info {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+  }
+}

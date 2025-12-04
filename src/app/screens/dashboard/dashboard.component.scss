@@ -1,0 +1,167 @@
+/* =========================================================
+   DASHBOARD – ESTRUCTURA POS | PALETA CLINITURN
+   Estilo consistente: Azul CliniTurn (#0092B8), Tarjetas elevadas
+   ========================================================= */
+
+// Wrapper General (Mismo fondo degradado que en Login/Registro)
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 146, 184, 0.05) 100%);
+  color: #231F20;
+  display: block; // En dashboard usamos block para el flujo normal
+}
+
+// Header container (ajuste opcional si el componente navbar lo requiere)
+.header-dashboard {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 146, 184, 0.05);
+}
+
+// Cuerpo del Dashboard
+.body-dashboard {
+  padding-bottom: 40px;
+}
+
+// Bienvenida (H2)
+h2 {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 900;
+  color: #0092B8; // Azul CliniTurn
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+
+  // Pequeño detalle visual debajo del título
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #0092B8, #017895);
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+}
+
+// Texto del Rol (Párrafo)
+p {
+  font-family: 'Nexa-Bold', sans-serif;
+  color: #64748b; // Gris azulado mudo
+  font-size: 16px;
+  margin-bottom: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Secciones como Tarjetas (Estilo POS Card)
+section {
+  background: #ffffff;
+  // Borde sutil azulado
+  border: 1px solid rgba(0, 146, 184, 0.15);
+  border-radius: 20px;
+  // Sombra elegante
+  box-shadow: 0 16px 44px rgba(0, 146, 184, 0.08);
+  padding: 2rem;
+  margin-top: 2rem;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px); // Pequeña elevación al pasar el mouse
+    box-shadow: 0 20px 48px rgba(0, 146, 184, 0.12);
+  }
+}
+
+// Título de la Sección (H4) - Estilo Pastilla
+h4 {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 12px;
+  background: rgba(0, 146, 184, 0.08); // Fondo azul muy claro
+  color: #0092B8;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+// Listas de Navegación
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px; // Espacio entre items
+  // Responsive grid para los links
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+li {
+  width: 100%;
+}
+
+// Enlaces como Botones de Menú
+a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 16px 20px;
+
+  background-color: #F8FAFC; // Fondo limpio
+  border: 1.5px solid #dbeafe; // Borde gris azulado
+  border-radius: 14px;
+
+  color: #231F20;
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  // Icono implícito o flecha al final (opcional con CSS puro)
+  &::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease;
+    font-weight: 900;
+  }
+
+  &:hover {
+    background-color: #ffffff;
+    border-color: #0092B8; // Borde Azul CliniTurn al hover
+    color: #0092B8;
+    box-shadow: 0 4px 12px rgba(0, 146, 184, 0.1);
+    padding-left: 24px; // Efecto de desplazamiento
+
+    &::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  h2 {
+    font-size: 26px;
+  }
+
+  section {
+    padding: 1.5rem;
+  }
+
+  ul {
+    grid-template-columns: 1fr; // Una sola columna en móvil
+  }
+}

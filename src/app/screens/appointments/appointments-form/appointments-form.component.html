@@ -1,0 +1,142 @@
+<div class="wrapper">
+  <div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2 *ngIf="!editar">Registrar cita</h2>
+        <h2 *ngIf="editar">Editar cita</h2>
+        <button class="btn btn-secondary" type="button" (click)="regresar()">Regresar</button>
+      </div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <form (ngSubmit)="guardarCita()" novalidate>
+
+      <!-- FILA 1: FECHA / HORA / ESTADO -->
+      <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+          <label>Fecha</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="cita.fecha"
+            name="fecha"
+            (ngModelChange)="onFechaOMedicoChange()"
+          />
+          <small class="text-danger" *ngIf="errores.fecha">{{ errores.fecha }}</small>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label>Hora</label>
+          <select
+            class="form-select"
+            [(ngModel)]="cita.hora"
+            name="hora"
+          >
+            <option [ngValue]="null">
+              Selecciona una hora
+            </option>
+
+            <!-- Horarios disponibles 08:00–17:00 cada 30 min -->
+            <option *ngFor="let h of horariosDisponibles" [value]="h">
+              {{ h }}
+            </option>
+          </select>
+
+          <small class="text-danger" *ngIf="errores.hora">{{ errores.hora }}</small>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label>Estado</label>
+          <select class="form-select" [(ngModel)]="cita.estado" name="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Programada">Programada</option>
+            <option value="Confirmada">Confirmada</option>
+            <option value="Completada">Completada</option>
+            <option value="Cancelada">Cancelada</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- FILA 2: PACIENTE / ESPECIALIDAD / MÉDICO -->
+      <div class="row mb-3">
+        <!-- PACIENTE -->
+        <div class="col-md-4 mb-3">
+          <label>Paciente</label>
+          <select class="form-select" [(ngModel)]="cita.paciente" name="paciente">
+            <option [ngValue]="null">Selecciona un paciente</option>
+            <option *ngFor="let p of listaPacientes" [ngValue]="p.id">
+              {{ p.nombre || (p.user?.first_name + ' ' + p.user?.last_name) }}
+            </option>
+          </select>
+          <small class="text-danger" *ngIf="errores.paciente">{{ errores.paciente }}</small>
+        </div>
+
+        <!-- ESPECIALIDAD -->
+        <div class="col-md-4 mb-3">
+          <label>Especialidad</label>
+          <select
+            class="form-select"
+            [(ngModel)]="cita.especialidad"
+            name="especialidad"
+            (ngModelChange)="filtrarDoctoresPorEspecialidad(); onFechaOMedicoChange()"
+          >
+            <option [ngValue]="null">Selecciona una especialidad</option>
+            <option *ngFor="let e of listaEspecialidades" [ngValue]="e.id">
+              {{ e.nombre }}
+            </option>
+          </select>
+          <small class="text-danger" *ngIf="errores.especialidad">{{ errores.especialidad }}</small>
+        </div>
+
+        <!-- MÉDICO -->
+        <div class="col-md-4 mb-3">
+          <label>Médico</label>
+          <select
+            class="form-select"
+            [(ngModel)]="cita.medico"
+            name="medico"
+            (ngModelChange)="onFechaOMedicoChange()"
+          >
+            <option [ngValue]="null">Selecciona un médico</option>
+            <option *ngFor="let d of doctoresFiltrados" [ngValue]="d.id">
+              {{ d.user?.first_name }} {{ d.user?.last_name }}
+            </option>
+          </select>
+          <small class="text-danger" *ngIf="errores.medico">{{ errores.medico }}</small>
+        </div>
+      </div>
+
+      <!-- FILA 3: CONSULTORIO -->
+      <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+          <label>Consultorio</label>
+          <select class="form-select" [(ngModel)]="cita.consultorio" name="consultorio">
+            <option [ngValue]="null">Selecciona un consultorio</option>
+            <option *ngFor="let c of listaConsultorios" [ngValue]="c.id">
+              {{ c.nombre }} - {{ c.edificio }} {{ c.numero }}
+            </option>
+          </select>
+          <small class="text-danger" *ngIf="errores.consultorio">{{ errores.consultorio }}</small>
+        </div>
+      </div>
+
+      <!-- FILA 4: MOTIVO -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <label>Motivo de la consulta</label>
+          <textarea rows="3" class="form-control" [(ngModel)]="cita.motivo" name="motivo"></textarea>
+          <small class="text-danger" *ngIf="errores.motivo">{{ errores.motivo }}</small>
+        </div>
+      </div>
+
+      <!-- BOTÓN -->
+      <div class="row mb-5">
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary">
+            {{ editar ? 'Actualizar cita' : 'Registrar cita' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

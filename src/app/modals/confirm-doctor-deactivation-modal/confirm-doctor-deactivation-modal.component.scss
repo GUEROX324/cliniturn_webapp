@@ -1,0 +1,43 @@
+.wrapper {
+  position: relative;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  min-width: 320px;
+}
+
+.icon-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.body-modal {
+  margin-top: 24px;
+}
+
+.title-modal {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.descripcion {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.buttons-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-regresar {
+  background-color: #e0e0e0;
+}
+
+.btn-eliminar {
+  background-color: #0d6efd;
+  color: #ffffff;
+}

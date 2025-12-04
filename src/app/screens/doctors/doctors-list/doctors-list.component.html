@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2>Lista de médicos</h2>
+        <button class="btn btn-outline-secondary" routerLink="/dashboard">Regresar al dashboard</button>
+        <button class="btn btn-primary" (click)="nuevoDoctor()">Registrar médico</button>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+      <div class="col-12 text-center">
+        Cargando médicos...
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!loading">
+      <div class="col-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Cédula</th>
+              <th>Nombre completo</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Especialidad</th>
+              <th>Activo</th>
+              <th>Editar</th>
+              <th>Activar/Desactivar</th>
+            </tr>
+          </thead>
+          <tbody>
+  <tr *ngFor="let doc of doctores">
+    <!-- CÉDULA -->
+    <td>{{ doc.cedula }}</td>
+
+    <!-- NOMBRE COMPLETO (viene de user) -->
+    <td>{{ doc.user?.first_name }} {{ doc.user?.last_name }}</td>
+
+    <!-- EMAIL (viene de user) -->
+    <td>{{ doc.user?.email }}</td>
+
+    <!-- TELÉFONO (directo del modelo Medico) -->
+    <td>{{ doc.telefono }}</td>
+
+    <!-- ESPECIALIDAD (texto amigable) -->
+    <td>{{ doc.especialidad_nombre || 'Sin asignar' }}</td>
+
+    <!-- ACTIVO -->
+    <td>{{ doc.activo ? 'Sí' : 'No' }}</td>
+
+    <td>
+      <button class="btn btn-sm btn-outline-primary" (click)="editarDoctor(doc.id)">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+    </td>
+    <td>
+      <button
+        class="btn btn-sm btn-outline-danger"
+        (click)="abrirModalEstadoDoctor(doc)"
+      >
+        <i class="bi" [ngClass]="doc.activo ? 'bi-person-dash-fill' : 'bi-person-check-fill'"></i>
+      </button>
+    </td>
+  </tr>
+</tbody>
+        </table>
+
+        <div *ngIf="doctores.length == 0 && !loading" class="alert alert-info">
+          No hay médicos registrados.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

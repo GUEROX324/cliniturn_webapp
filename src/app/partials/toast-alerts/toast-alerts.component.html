@@ -1,0 +1,13 @@
+<div class="toasts" *ngIf="messages.length > 0">
+  <div
+    class="toasts__item"
+    *ngFor="let msg of messages"
+    [ngClass]="{
+      'toasts__item--success': msg.type === 'success',
+      'toasts__item--error': msg.type === 'error',
+      'toasts__item--info': msg.type === 'info'
+    }"
+  >
+    {{ msg.text }}
+  </div>
+</div>

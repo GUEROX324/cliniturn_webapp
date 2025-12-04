@@ -1,0 +1,168 @@
+<div class="wrapper">
+  <div class="container mt-4 mb-5">
+
+    <!-- Título -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="title-page">Reportes y Estadísticas</h2>
+        <p class="subtitle-page">Resumen general de la clínica, KPIs y expedientes recientes.</p>
+      </div>
+    </div>
+
+    <!-- RESUMEN GENERAL -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card card-section">
+          <div class="card-body">
+            <h5 class="card-title">Resumen general</h5>
+
+            <div *ngIf="loadingResumen" class="text-center mt-3 mb-3">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+
+            <div *ngIf="errorResumen && !loadingResumen" class="alert alert-danger">
+              {{ errorResumen }}
+            </div>
+
+            <div *ngIf="!loadingResumen && !errorResumen">
+              <div class="row">
+                <div class="col-6 col-md-3 mb-3">
+                  <div class="info-item">
+                    <span class="label">Total pacientes</span>
+                    <span class="value">{{ resumen.total_pacientes || 0 }}</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                  <div class="info-item">
+                    <span class="label">Total médicos</span>
+                    <span class="value">{{ resumen.total_medicos || 0 }}</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                  <div class="info-item">
+                    <span class="label">Citas hoy</span>
+                    <span class="value">{{ resumen.citas_hoy || 0 }}</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                  <div class="info-item">
+                    <span class="label">Citas pendientes</span>
+                    <span class="value">{{ resumen.citas_pendientes || 0 }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- card-body -->
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card card-section">
+          <div class="card-body">
+            <h5 class="card-title">KPIs</h5>
+
+            <div *ngIf="loadingKpis" class="text-center mt-3 mb-3">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+
+            <div *ngIf="errorKpis && !loadingKpis" class="alert alert-danger">
+              {{ errorKpis }}
+            </div>
+
+            <div *ngIf="!loadingKpis && !errorKpis">
+              <div class="row">
+                <div class="col-12 col-md-4 mb-3">
+                  <div class="kpi-card">
+                    <span class="kpi-label">Tasa de asistencia</span>
+                    <span class="kpi-value">
+                      {{ kpis.tasa_asistencia || 0 }}%
+                    </span>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                  <div class="kpi-card">
+                    <span class="kpi-label">Cancelaciones</span>
+                    <span class="kpi-value">
+                      {{ kpis.porcentaje_canceladas || 0 }}%
+                    </span>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                  <div class="kpi-card">
+                    <span class="kpi-label">Citas por médico (prom.)</span>
+                    <span class="kpi-value">
+                      {{ kpis.citas_promedio_medico || 0 }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- card-body -->
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPEDIENTES RECIENTES -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-section">
+          <div class="card-body">
+            <h5 class="card-title">Expedientes recientes</h5>
+
+            <div *ngIf="loadingExpedientes" class="text-center mt-3 mb-3">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+
+            <div *ngIf="errorExpedientes && !loadingExpedientes" class="alert alert-danger">
+              {{ errorExpedientes }}
+            </div>
+
+            <div *ngIf="!loadingExpedientes && !errorExpedientes">
+              <div *ngIf="expedientes.length === 0" class="alert alert-info">
+                No se encontraron expedientes registrados.
+              </div>
+
+              <div *ngIf="expedientes.length > 0" class="table-responsive">
+                <table class="table table-striped table-hover table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">Paciente</th>
+                      <th scope="col">Matrícula</th>
+                      <th scope="col">Médico</th>
+                      <th scope="col">Especialidad</th>
+                      <th scope="col">Última cita</th>
+                      <th scope="col">Total citas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let exp of expedientes">
+                      <td>{{ exp.paciente }}</td>
+                      <td>{{ exp.matricula }}</td>
+                      <td>{{ exp.medico }}</td>
+                      <td>{{ exp.especialidad }}</td>
+                      <td>{{ exp.ultima_cita | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{ exp.total_citas }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div> <!-- card-body -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,103 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 146, 184, 0.05) 100%);
+  color: #231F20;
+  display: block;
+  padding-bottom: 40px;
+}
+
+// Título de la Página
+h2 {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 900;
+  color: #0092B8; // Azul CliniTurn
+  font-size: 28px;
+  margin-bottom: 0;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+
+  // Icono decorativo antes del título
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background: linear-gradient(180deg, #0092B8, #017895);
+    margin-right: 12px;
+    border-radius: 4px;
+  }
+}
+
+// Contenedores de las Gráficas (Columnas convertidas a Tarjetas)
+.col-md-6 {
+  background: #ffffff;
+  border-radius: 20px;
+  // Sombra elegante
+  box-shadow: 0 16px 44px rgba(0, 146, 184, 0.08);
+  // Borde sutil
+  border: 1px solid rgba(0, 146, 184, 0.15);
+  padding: 2rem;
+  background-clip: padding-box;
+
+  // Transición suave al hover (opcional)
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 48px rgba(0, 146, 184, 0.12);
+  }
+}
+
+// Títulos de cada Gráfica (h5)
+h5 {
+  font-family: 'Nexa-Bold', sans-serif;
+  font-weight: 800;
+  color: #231F20;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+
+  // Pequeña línea decorativa debajo del título de la gráfica
+  &::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #0092B8;
+    margin: 8px auto 0;
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+}
+
+// Estilos del Canvas (Responsive)
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 400px; // Limitar altura para que no se deformen
+}
+
+// Estado de Carga
+.text-center {
+  font-family: 'Nexa-Bold', sans-serif;
+  color: #64748b;
+  font-size: 16px;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+}
+
+// Ajustes Responsive
+@media (max-width: 768px) {
+  .col-md-6 {
+    margin-bottom: 2rem; // Más separación vertical en móviles
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}

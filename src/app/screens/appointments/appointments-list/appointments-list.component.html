@@ -1,0 +1,109 @@
+<div class="wrapper">
+  <div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2>Lista de citas</h2>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-secondary" routerLink="/dashboard">Regresar al dashboard</button>
+        <button class="btn btn-primary" (click)="nuevaCita()" *ngIf="esAdmin || esPaciente">Agendar cita</button>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+      <div class="col-12 text-center">
+        Cargando citas...
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!loading">
+      <div class="col-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+
+              <!-- Paciente solo para admin / médico -->
+              <th *ngIf="puedeVerColumnaPaciente()">Paciente</th>
+
+              <th>Médico</th>
+              <th>Especialidad</th>
+              <th>Estado</th>
+              <th>Editar</th>
+              <th>Confirmar</th>
+              <th>Cancelar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of citas">
+              <td>{{ c.fecha }}</td>
+              <td>{{ c.hora }}</td>
+
+              <!-- Paciente solo para admin / médico -->
+              <td *ngIf="puedeVerColumnaPaciente()">
+                {{ getNombrePaciente(c.paciente) }}
+              </td>
+
+              <td>{{ getNombreMedico(c.medico) }}</td>
+              <td>{{ getNombreEspecialidadPorMedico(c.medico) }}</td>
+
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-warning': estadoCita(c) === 'pendiente' || estadoCita(c) === 'programada',
+                    'bg-success': estadoCita(c) === 'confirmada' || estadoCita(c) === 'completada',
+                    'bg-danger': estadoCita(c) === 'cancelada'
+                  }"
+                >
+                  {{ estadoCita(c) === 'pendiente'   ? 'Pendiente'   :
+                     estadoCita(c) === 'programada'  ? 'Programada'  :
+                     estadoCita(c) === 'confirmada'  ? 'Confirmada'  :
+                     estadoCita(c) === 'completada'  ? 'Completada'  : 'Cancelada'
+                  }}
+                </span>
+              </td>
+
+              <!-- EDITAR: solo admin / médico -->
+              <td>
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  (click)="editarCita(c.id)"
+                  *ngIf="puedeEditar(c)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </td>
+
+              <!-- CONFIRMAR: solo admin / médico, y solo si no está cancelada/completada -->
+              <td>
+                <button
+                  class="btn btn-sm btn-outline-success"
+                  (click)="abrirModalConfirmar(c.id)"
+                  *ngIf="puedeConfirmar(c)"
+                >
+                  <i class="bi bi-check-circle-fill"></i>
+                </button>
+              </td>
+
+              <!-- CANCELAR: admin / médico / paciente, mientras no esté cancelada/completada -->
+              <td>
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="abrirModalCancelar(c.id)"
+                  *ngIf="puedeCancelar(c)"
+                >
+                  <i class="bi bi-x-circle-fill"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="citas.length == 0 && !loading" class="alert alert-info">
+          No hay citas registradas.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
